@@ -17,4 +17,16 @@
    
    - `slider` 
 
+### 🏠 images for reference
+![image](./public/images/image1.png)
+---
+![image](./public/images/image2.png)
+---
+![image](./public/images/image3.png)
+---
+![image](./public/images/image4.png)
+
+---
+## Feel free to provide any feedback on this project.🤝✨
+
 ---
