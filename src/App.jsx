@@ -1,47 +1,28 @@
 // packages
 import { Divider,Container } from '@chakra-ui/react'
+import { Routes, Route,useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 // local imports
-import AboveNav from './components/AboveNav.jsx'
-import Navbar from './components/Navbar.jsx'
-import BelowNav from './components/BelowNav.jsx'
-import Sponsor from './components/Sponsor.jsx'
-import BannerSlider from './components/BannerSlider.jsx'
-import BelowBanner from './components/BelowBanner.jsx'
-import BelowTop from './components/BelowTop.jsx'
-import BelowSlider from './components/BelowSlider.jsx'
-import GetInspired from './components/GetInspired.jsx'
-import GreatDeals from './components/GreatDeals.jsx'
-import MarcusFree from './components/MarcusFree.jsx'
-import Category from './components/Category.jsx'
-import Currently from './components/Currently.jsx'
-import Trending from './components/Trending.jsx'
-import Footer from './components/Footer.jsx'
-
+import FrontPage from "./pages/FrontPage.jsx"
+import NotFoundPage from "./pages/NotFoundPage.jsx"
 
 function App() {
+ const location = useLocation();
+ const navigate = useNavigate();
 
+ useEffect(() => {
+   if (location.pathname.match(/\/{2,}/)) {
+     navigate(location.pathname.replace(/\/{2,}/g, "/"), { replace: true });
+   }
+ }, [location, navigate]);
 
   return (
     <>
-      <AboveNav />
-      <Navbar />
-      < Divider borderColor={"gray"}  p={"0 10px"} margin={"auto"} w={"96%"}/>
-      <BelowNav/>
-      <Container maxW={"96%"}  mt={"40px"} h={"fit-content"} >
-      <Sponsor/>
-      <BannerSlider/>
-      <BelowBanner/>
-      <BelowTop/>
-      <GetInspired/>
-      <BelowSlider/>
-      <GreatDeals/>
-      <MarcusFree/>
-      <Category/>
-      <Currently/>
-      <Trending/>
-      </Container>
-      <Footer/>
+     <Routes>
+      <Route path="/" element={<FrontPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
     </>
   )
 }
